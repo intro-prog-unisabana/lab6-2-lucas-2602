@@ -6,9 +6,12 @@ def employee_print(employee_info):
     print(f"Name: {name}")
     print(f"Salary: {salary}")
     print(f"Role: {role}")
-    employee_info.pop("Name")
-    employee_info.pop("Salary")
-    employee_info.pop("Role")
+    if "Name" in employee_info:
+        employee_info.pop("Name")
+    if "Salary" in employee_info:
+        employee_info.pop("Salary")
+    if "Role" in employee_info:
+        employee_info.pop("Role")
     if not employee_info:
         print("No other info!")
     else:
