@@ -9,15 +9,8 @@ def employee_print(employee_info):
     employee_info.pop("Name")
     employee_info.pop("Salary")
     employee_info.pop("Role")
-    print(employee_info)
-    print("No other info!")
-    
-
-employee_info = {
-    "Name": "Diego",
-    "Salary": 5000000,
-    "Role": "Janitor",
-    "Years at company": 9001,
-    "Hours per week": 2
-}
-employee_print(employee_info)
+    if not employee_info:
+        print("No other info!")
+    else:
+        for key, value in employee_info.items():
+            print(f"{key}: {value}")
