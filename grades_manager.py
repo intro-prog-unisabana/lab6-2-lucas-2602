@@ -34,22 +34,22 @@ def get_students(student_grades, keys):
             print(f"{nombre_formateado.title()} not found!")
     return resultado_de_busqueda
 
-def avg_by_student(student_grades, keys= None):
+def avg_by_student(student_grades, keys = None):
     claves_formateadas = {}
     if keys is None:
         keys = student_grades.keys()
-    for nombre, calificacion in student_grades.items():
-        claves_formateadas[nombre.lower()] = float(calificacion)
+    for nombre, asignaturas in student_grades.items():
+        claves_formateadas[nombre.lower()] = asignaturas
     for name in keys:
         nombre_formateado = name.lower()
         if nombre_formateado in claves_formateadas:
-            calificaciones = student_grades[name]
-            promedio = sum(calificaciones)/len(calificaciones)
-            print(promedio)
-student_grades = {
-    "Alice": {"Math": 70.0, "English": 60.0},
-    "Ben": {"Science": 55.0, "History": 66.0},
-    "Charlie": {"Math": 90.0, "Science": 85.0}
-}
-
-avg_by_student(student_grades)
+            asignaturas_por_estudiante = claves_formateadas[nombre_formateado]
+            suma_de_calificaciones = 0
+            conteo_de_materias = 0
+            for calificacion in asignaturas_por_estudiante.values():
+                suma_de_calificaciones = suma_de_calificaciones + calificacion
+                conteo_de_materias = conteo_de_materias + 1
+                promedio = suma_de_calificaciones / conteo_de_materias
+            print(f"{name.title()}: {promedio}")
+        else:
+            print(f"{name.title()} not found!")
