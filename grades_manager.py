@@ -22,17 +22,34 @@ def add_student(student_grades = {}):
     return student_grades
 
 def get_students(student_grades, keys):
-    result = {}
-    for x in keys:
-        if x in student_grades:
-            result[x] = student_grades[x]
+    claves_formateadas = {}
+    for nombre, calificacion in student_grades.items():
+        claves_formateadas[nombre.lower()] = calificacion
+    resultado_de_busqueda = {}
+    for name in keys:
+        nombre_formateado = name.lower()
+        if nombre_formateado in claves_formateadas:
+            resultado_de_busqueda[nombre_formateado.title()] = claves_formateadas[nombre_formateado]
         else:
-            print(f"{x} not found!")
-    return print(student_grades)
+            print(f"{nombre_formateado.title()} not found!")
+    return resultado_de_busqueda
 
+def avg_by_student(student_grades, keys= None):
+    claves_formateadas = {}
+    if keys is None:
+        keys = student_grades.keys()
+    for nombre, calificacion in student_grades.items():
+        claves_formateadas[nombre.lower()] = float(calificacion)
+    for name in keys:
+        nombre_formateado = name.lower()
+        if nombre_formateado in claves_formateadas:
+            calificaciones = student_grades[name]
+            promedio = sum(calificaciones)/len(calificaciones)
+            print(promedio)
 student_grades = {
-    'Alice': {'Math': 90.5, 'English': 85.0},
-    'Bob': {'Science': 88.0, 'History': 92.0}
+    "Alice": {"Math": 70.0, "English": 60.0},
+    "Ben": {"Science": 55.0, "History": 66.0},
+    "Charlie": {"Math": 90.0, "Science": 85.0}
 }
 
-result = get_students(student_grades, ["Alice", "Charlie"])
+avg_by_student(student_grades)
