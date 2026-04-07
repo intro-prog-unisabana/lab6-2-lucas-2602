@@ -2,7 +2,7 @@ def initialize_dict(student_name, subject_grades):
     diccionario_inicial = {
         student_name:subject_grades
     }
-    return print(diccionario_inicial)
+    return diccionario_inicial
 
 def add_student(student_grades = {}):
     data_estudiante = {}
@@ -38,18 +38,19 @@ def avg_by_student(student_grades, keys = None):
     claves_formateadas = {}
     if keys is None:
         keys = student_grades.keys()
-    for nombre, asignaturas in student_grades.items():
-        claves_formateadas[nombre.lower()] = asignaturas
-    for name in keys:
-        nombre_formateado = name.lower()
-        if nombre_formateado in claves_formateadas:
-            asignaturas_por_estudiante = claves_formateadas[nombre_formateado]
-            suma_de_calificaciones = 0
-            conteo_de_materias = 0
-            for calificacion in asignaturas_por_estudiante.values():
-                suma_de_calificaciones = suma_de_calificaciones + calificacion
-                conteo_de_materias = conteo_de_materias + 1
-                promedio = suma_de_calificaciones / conteo_de_materias
-            print(f"{name.title()}: {promedio}")
-        else:
-            print(f"{name.title()} not found!")
+    else:
+        for nombre, asignaturas in student_grades.items():
+            claves_formateadas[nombre.lower()] = asignaturas
+        for name in keys:
+            nombre_formateado = name.lower()
+            if nombre_formateado in claves_formateadas:
+                asignaturas_por_estudiante = claves_formateadas[nombre_formateado]
+                suma_de_calificaciones = 0
+                conteo_de_materias = 0
+                for calificacion in asignaturas_por_estudiante.values():
+                    suma_de_calificaciones = suma_de_calificaciones + calificacion
+                    conteo_de_materias = conteo_de_materias + 1
+                    promedio = suma_de_calificaciones / conteo_de_materias
+                print(f"{name.title()}: {promedio:.1f}")
+            else:
+                print(f"{name.title()} not found!")
