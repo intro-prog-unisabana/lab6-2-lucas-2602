@@ -5,7 +5,7 @@ while True:
     seleccion = input("Select an option:\n1. Add a student\n2. Print student grade averages\n3. Exit\n")
     print()
     if seleccion == "1":
-        add_student(my_grades)
+        my_grades = add_student(my_grades)
         print()
         continue
     elif seleccion == "2":
@@ -16,9 +16,10 @@ while True:
             print()
             continue
         elif opciones == "b":
-            lista_de_estudiantes = input("Enter student names (comma-separated):")
+            names = input("Enter student names (comma-separated):")
             print()
-            avg_by_student(my_grades, lista_de_estudiantes)
+            keys = [name.strip() for name in names.split(",")]
+            avg_by_student(my_grades, keys)
             print()
             continue
         else:
